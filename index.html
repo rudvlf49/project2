@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>행복나눔재단</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="scripts.js"></script>
+    <script>
+        $(function() {
+            $('.mainMenu>li').mouseover(function() {
+                $(this).children('.subMenu').stop().slideDown();
+
+            });
+            $('.mainMenu>li').mouseleave(function() {
+                $(this).children('.subMenu').stop().slideUp();
+
+            });
+
+
+
+
+
+        });
+
+    </script>
+    
+    <script>
+        $(document).ready(function() {
+            mobile_menu();
+        });
+
+        function mobile_menu() {
+            /* 변수 선언 */
+            var $menu = null;
+            var $left_gnb = null; // 영역 전체
+            var $depth1_wrap = null;
+            var $depth1 = null;
+            var $depth1_btn = null;
+
+            /* 시작 함수 */
+            function start() {
+                init();
+                init_event();
+            }
+            /* 변수 초기화 함수 */
+            function init() {
+                $menu = $('.btn1');
+                $left_gnb = $('.left_gnbWrap'); // 영역 전체
+                $depth1_wrap = $('.left_gnb>li');
+                $depth1 = $depth1_wrap.children('ul');
+                $depth1_btn = $depth1_wrap.children('a');
+            }
+            /* 이벤트 함수 */
+            function init_event() {
+
+                /* 모바일 메뉴 버튼 클릭했을때 모바일 메뉴영역 나오게 하기 */
+                $menu.click(function(event) {
+                    event.preventDefault();
+                    $left_gnb.addClass('on');
+                });
+
+                /* x버튼 눌렀을때 모바일 메뉴 닫기 */
+                $('.close').click(function(event) {
+                    event.preventDefault();
+
+                    $left_gnb.removeClass('on');
+
+                    // x버튼 누르면 시간차 약간두고 소메뉴 닫히게 하기
+                    setTimeout(function() {
+                        $depth1_btn.removeClass('on');
+                        $depth1.slideUp();
+                    }, 300)
+                });
+
+                /* depth1의 각메뉴 클릭시 depth2 나오게 하기 */
+                $depth1_btn.click(function(event) {
+                    event.preventDefault();
+                    var $this = $(this);
+                    var $this_ul = $this.siblings('ul');
+
+                    var check = $this.hasClass('on');
+                    if (check) {
+                        $this.removeClass('on');
+                        $this_ul.stop(true, true).slideUp();
+                    } else {
+                        $depth1_btn.removeClass('on');
+                        $depth1.stop().slideUp();
+                        $this.addClass('on');
+                        $this_ul.stop(true, true).slideDown();
+                    }
+                });
+
+                /* 디바이스 크기 변경시 모바일 메뉴영역 숨기기 */
+                $(window).resize(function() {
+                    $left_gnb.removeClass('on');
+                });
+            }
+
+            start(); // 시작 호출
+        }
+    </script>
+    
+    
+    
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="header">
+            <div class="inner">
+
+                <div class="logo">
+                    <img src="img/mainlogo.gif">
+                </div>
+                <ul class="mainMenu">
+                    <li><a href="#">사회변화 프로젝트 개발</a>
+                        <ul class="subMenu">
+                            <li><a href="sub.html">세상파일</a></li>
+                            <li><a href="sub.html">Sosial inovators table</a></li>
+                            <li><a href="sub.html">뉴보리</a></li>
+                            <li><a href="sub.html">임펙트 투자</a></li>
+                            <li><a href="sub.html">구름에</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">청년 인재 양성 프로젝트 확산</a>
+                        <ul class="subMenu">
+                            <li><a href="sub.html">SK 자원봉사단 SUNNY</a></li>
+                            <li><a href="sub.html">청년 소셜 이노베이터 LOOKIE</a></li>
+                            <li><a href="sub.html">SK 뉴스쿨</a></li>
+
+
+                        </ul>
+
+                    </li>
+                    <li><a href="#">행복나눔재단</a>
+                        <ul class="subMenu">
+                            <li><a href="sub.html">재단소개</a></li>
+                            <li><a href="sub.html">재단소식</a></li>
+                            <li><a href="sub.html">재단공지</a></li>
+                            <li><a href="sub.html">오시는길</a></li>
+                            <li><a href="sub.html">성과 및 연혁</a></li>
+                        </ul>
+
+
+
+                    </li>
+                </ul>
+                <div class="btn1">
+                    <img src="img/images/btn1.gif">
+                </div>
+                <nav class="left_gnbWrap">
+                            <a href="#" class="close"><img src="img/i_close.png"></a>
+                            <ul class="left_gnb">
+                                <li><a href="#">사회변화 프로젝트 개발</a>
+                        <ul class="subMenu">
+                            <li><a href="sub.html">세상파일</a></li>
+                            <li><a href="sub.html">Sosial inovators table</a></li>
+                            <li><a href="sub.html">뉴보리</a></li>
+                            <li><a href="sub.html">임펙트 투자</a></li>
+                            <li><a href="sub.html">구름에</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">청년 인재 양성 프로젝트 확산</a>
+                        <ul class="subMenu">
+                            <li><a href="sub.html">SK 자원봉사단 SUNNY</a></li>
+                            <li><a href="sub.html">청년 소셜 이노베이터 LOOKIE</a></li>
+                            <li><a href="sub.html">SK 뉴스쿨</a></li>
+
+
+                        </ul>
+
+                    </li>
+                    <li><a href="#">행복나눔재단</a>
+                        <ul class="subMenu">
+                            <li><a href="sub.html">재단소개</a></li>
+                            <li><a href="sub.html">재단소식</a></li>
+                            <li><a href="sub.html">재단공지</a></li>
+                            <li><a href="sub.html">오시는길</a></li>
+                            <li><a href="sub.html">성과 및 연혁</a></li>
+                        </ul>
+
+
+
+                    </li>
+                            </ul>
+                        </nav>
+
+            </div>
+        </div>
+        <div id="mainimg">
+            <div class="inner">
+                <div class="main_text">
+                    <h1>더나은사회를위해<br>끊임없이 도전합니다</h1>
+                </div>
+                <div class="main_right">
+                    <img src="img/mainimg.gif">
+                </div>
+            </div>
+        </div>
+        <div id="contents">
+            <div class="box_1">
+                <div class="inner">
+                    <div class="img_set">
+                        <div>
+                            <img src="img/contents1.gif">
+                            <h2>행복나눔재단 사회변화 SOLUTION SKETCH3[시각장애인 학습의</h2>
+                        </div>
+                        <div>
+                            <img src="img/contents2.gif">
+                            <h2>[세상파일을 열다]에 여러분을여러분을 초대합니다! 세상파일</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box_2">
+                <div class="inner">
+                    <div class="img_set">
+                        <div>
+                            <h2>Social<br>Innovators<br>Table</h2>
+
+                            <p>Social Innovators Table은<br>사회변화 사례를 만들어가소셜<br>이노베이터들을위한 정보<br>공유 및 네트워킹 플랫폼 입니다.</p>
+                        </div>
+                        <div>
+                            <div>
+                                <img src="img/contents3.gif">
+                            </div>
+                            <h2>INSIDE 행복나눔재단 나를<br><br>설득하고 남을 설득하기 위해...</h2>
+                        </div>
+                        <div>
+                            <div>
+                                <img src="img/contents4.gif">
+                            </div>
+                            <h2>Social Innovators Table<br><br>
+                                우리 사회 소셜 이노베이터를..</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box_3">
+                <img src="img/contents5.gif">
+            </div>
+            <div class="box_4">
+                <div class="inner">
+                    <div>
+                        <img src="img/contents6.gif">
+                    </div>
+                    <div>
+                        <h2>IMPACT<br><br>INVESTING</h2>
+
+                        <p>임팩트 투자는 재무적 수입과<br>함께 사회에 긍정적 영향력을 발생<br>시키는 기업,조직 등을대상으로<br>하는 투자방식입니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box_5">
+                <div class="inner">
+                    <div class="bar">
+                        <img src="img/story.gif">
+                    </div>
+                    <div class="img_set">
+
+                        <div>
+                            <img src="img/contents7.gif">
+                            <h3>LOOKIE 블로그보기</h3>
+                        </div>
+                        <div>
+                            <img src="img/contents8.gif">
+                            <h3>SK뉴스쿨 조리학과졸업생 인터뷰</h3>
+                        </div>
+                        <div>
+                            <img src="img/contents9.gif">
+                            <h3>한국음악과 김지은 써니를 만나다</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="inner">
+                <div>
+                    <img src="img/footer2.gif">
+                </div>
+
+                <div>
+                    <img src="img/footer1.gif">
+                </div>
+                <p>04393 서울시 용산구 장문로60 (동빙고동) TEL:02-333-3963,FAX:02-333-3961, E-MAIL:contact@skhappiness.org<br>COPYRIGHT 2018 행복나눔재단.ALL RIGHTS RESERVED</p>
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
